@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+require "English"
+
+public def do_upload_video
+  puts "Step 1: Upload the video to Wistia. Have you done this?"
+  $stdin.gets
+end
+
+available_subcommands = %W[upload-video]
+
+case subcommand=ARGV[0]
+when *available_subcommands
+  public_send "do_#{subcommand.tr("-","_")}"
+else
+  warn "Usage: #{$PROGRAM_NAME} <SUBCOMMAND>"
+  warn "Available subcommands:\n\n"
+  available_subcommands.each{|c| puts c}
+end
+
